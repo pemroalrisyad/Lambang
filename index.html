@@ -16,17 +16,49 @@
     body {
       font-family: 'Roboto', sans-serif;
       background-color: #000;
-      background-image: radial-gradient(circle at top left, rgba(255, 255, 255, 0.05), transparent 60%),
-                        radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.05), transparent 60%);
       color: white;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 100vh;
       padding: 40px 20px;
+      overflow: hidden;
+    }
+
+    /* Background bintang */
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      z-index: 0;
+    }
+
+    .stars::before, .stars::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      background: transparent url("https://raw.githubusercontent.com/PickledCucumber/starry-night-css/main/stars.png") repeat;
+      animation: moveStars 100s linear infinite;
+      opacity: 0.3;
+    }
+
+    .stars::after {
+      animation-direction: reverse;
+      opacity: 0.15;
+    }
+
+    @keyframes moveStars {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-50%, -50%); }
     }
 
     .container {
+      position: relative;
+      z-index: 1;
       background: rgba(255, 255, 255, 0.05);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 15px;
@@ -111,6 +143,7 @@
   </style>
 </head>
 <body>
+  <div class="stars"></div>
   <div class="container">
     <img src="https://via.placeholder.com/150" alt="Foto Profil" class="profile-img">
     <h1>Lambang</h1>
@@ -130,4 +163,3 @@
   </div>
 </body>
 </html>
-
